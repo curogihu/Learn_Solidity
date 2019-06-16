@@ -13,6 +13,7 @@ const web3 = new Web3(ganache.provider());
 // describe     - Groups together 'it' function
 // beforeEach   - Execute some general setup code
 
+// The car is used for learning how to use test with Mocha
 class Car {
     park() {
         return 'stopped';
@@ -23,9 +24,23 @@ class Car {
     }
 }
 
+let car;
+
+// Extract common initization process
+beforeEach(() => {
+    car = new Car();
+});
+
+// Two test cases for Car class
 describe('Car', () => {
     it('can park', () => {
-        const car = new Car();
+        // const car = new Car();
         assert.equal(car.park(), 'stopped');
+    });
+
+
+    it('can drive', () => {
+        // const car = new Car();
+        assert.equal(car.drive(), 'vroom');
     });
 });
