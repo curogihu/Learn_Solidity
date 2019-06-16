@@ -12,3 +12,19 @@ const web3 = new Web3(ganache.provider());
 // it           - Run a test and make an assertion
 // describe     - Groups together 'it' function
 // beforeEach   - Execute some general setup code
+
+beforeEach(() => {
+    // Get a list of all accounts
+    web3.eth.getAccounts()
+        .then(fetchedAccounts => {
+            console.log(fetchedAccounts);
+        });
+
+    // Use one of those accounts to deploy the contract
+
+});
+
+describe('Inbox', () => {
+    it('deploys a contract', () => {})
+});
+
