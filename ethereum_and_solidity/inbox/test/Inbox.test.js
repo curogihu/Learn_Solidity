@@ -8,8 +8,6 @@ const { interface, bytecode } = require('../compile');
 // v0.x.x "Primitive" interface - only callbacks for async code
 // v1.x.x Support for promises + async / await
 
-
-
 let accounts;
 let inbox;
 
@@ -30,14 +28,15 @@ beforeEach(async () => {
 
     // Use one of those accounts to deploy the contract
     inbox = await new web3.eth.Contract(JSON.parse(interface))
-        .deploy({data: bytecode, arguments: ['Hi there'] })
-        .send({ from: accounts[0], gas: '1000000' })
+        .deploy({
+            data: bytecode,
+            arguments: ['Hi there!']
+        })
+        .send({ from: accounts[0], gas: '1000000' });
 });
 
 describe('Inbox', () => {
     it('deploys a contract', () => {
-      // console.log(accounts);
-      console.log(inbox);  
-    })
+      assert.ok(inbox.options.address);
+    });
 });
-
